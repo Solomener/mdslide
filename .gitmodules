@@ -1,3 +1,22 @@
 [submodule "revealjs"]
 	path = revealjs
 	url = https://github.com/hakimel/reveal.js.git
+[submodule "plugins/reveal.js-plugins"]
+	path = plugins/reveal.js-plugins
+	url = https://github.com/rajgoel/reveal.js-plugins.git
+[submodule "plugins/reveal.js-menu"]
+	path = plugins/reveal.js-menu
+	url = https://github.com/denehyg/reveal.js-menu.git
+[submodule "plugins/reveal.js-toolbar"]
+	path = plugins/reveal.js-toolbar
+	url = https://github.com/NCUTEA/reveal.js-toolbar.git
+	branch = feature-custombuttons
+[submodule "plugins/reveal.js-tagcloud-plugin"]
+	path = plugins/reveal.js-tagcloud-plugin
+	url = https://github.com/sebhildebrandt/reveal.js-tagcloud-plugin.git
+[submodule "plugins/reveal.js-coursemod"]
+	path = plugins/reveal.js-coursemod
+	url = https://github.com/Sonaryr/reveal.js-coursemod.git
+[submodule "plugins/reveal-pdfexport"]
+	path = plugins/reveal-pdfexport
+	url = https://github.com/McShelby/reveal-pdfexport.git
