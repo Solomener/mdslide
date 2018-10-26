@@ -9,6 +9,7 @@
  *		- Reimplement auto slide button to allow restyling ?
  * 		- Notes ?
  * 		- PDF export ?
+ *		- custom buttons
  *		- tooltips
  */
 
@@ -52,7 +53,6 @@ var RevealToolbar = window.RevealToolbar || (function(){
 			var showPause = option(options.pause, false);
 			var showNotes = option(options.notes, false);
 			var showHelp = option(options.help, false);
-			var custom = option(options.custom, false);
 			var captureMenu = option(options.captureMenu, true);
 			var capturePlaybackControl = option(options.capturePlaybackControl, true);
 
@@ -123,10 +123,6 @@ var RevealToolbar = window.RevealToolbar || (function(){
 					icon.classList.remove('fa-eye');
 					icon.classList.add('fa-eye-slash');
 				});
-			}
-
-			if (custom) {
-				custom.forEach(element => createToolbarButton(element.icon, element.callback));
 			}
 
 			if (captureMenu) {

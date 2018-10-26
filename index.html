@@ -10,10 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <link rel="stylesheet" href="./revealjs/css/reveal.css">
+    <link rel="stylesheet" href="./revealjs/css/theme/black.css">
     <link rel="stylesheet" href="./revealjs/css/theme/black.css" id="theme">
     <link rel="stylesheet" href="./revealjs/lib/css/zenburn.css">
 
-    <link rel="stylesheet" href="./plugins/reveal.js-plugins/menu/font-awesome-4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="plugins/META-INF/resources/webjars/font-awesome/4.5.0/css/font-awesome.css">
     <script>
         let link = document.createElement('link');
         link.rel = 'stylesheet';
@@ -46,6 +47,9 @@
                  data-separator-notes="^Note:"
                  data-charset="utf-8">
         </section>
+        <script>
+            alert("按F键退出聚光灯模式");
+        </script>
 
     </div>
 
@@ -57,18 +61,6 @@
 <script>
 
     Reveal.initialize({
-        controls: true,
-        progress: true,
-        history: true,
-        center: true,
-        mouseWheel: true,
-        previewLinks: true,
-        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition: Reveal.getQueryHash().transition || 'slide', // none/fade/slide/convex/concave/zoom
-        slideNumber: false,
-        markdown: {
-            smartypants: true
-        },
         pdfExportShortcut: 'E',
         menu: {
             side: 'left',
@@ -78,12 +70,9 @@
             useTextContentForMissingTitles: false,
             hideMissingTitles: false,
             markers: true,
-            custom: [
-                // {title: 'Plugins', icon: '<i class="fa fa-external-link"></i>', src: 'toc.html'},
-                // {title: 'About', icon: '<i class="fa fa-info"></i>', src: 'about.html'}
-            ],
-            themes: false,
-            themesPath: 'css/theme/',
+            custom: false,
+            themes: true,
+            themesPath: './revealjs/css/theme/',
             transitions: false,
             openButton: true,
             openSlideNumber: false,
@@ -92,10 +81,10 @@
             autoOpen: true,
             delayInit: false,
             openOnInit: false,
-            loadIcons: false,
+            loadIcons: true,
         },
         toolbar: {
-            position: 'bottom',
+            position: 'top',
             fullscreen: true,
             overview: false,
             pause: false,
@@ -110,12 +99,18 @@
             ],
             captureMenu: true,
             capturePlaybackControl: true,
-            loadIcons: false
+            loadIcons: true
         },
         chalkboard: { // font-awesome.min.css must be available
             src: null,
-            toggleChalkboardButton: {left: "45px", bottom: "80px"},
-            toggleNotesButton: {left: "85px", bottom: "80px"},
+            readOnly: undefined,
+            toggleChalkboardButton: { left: "60px", bottom: "100px", top: "auto", right: "auto" },
+            toggleNotesButton: { left: "120px", bottom: "100px", top: "auto", right: "auto" },
+            transition: 800,
+            theme: "chalkboard",
+            color: [ 'rgba(255,0,0,1)', 'rgba(255,255,255,0.5)' ],
+            background: [ 'rgba(127,127,127,.1)' , './plugins/reveal.js-plugins/chalkboard/img/blackboard.png' ],
+            pen:  [ 'url(./plugins/reveal.js-plugins/chalkboard/img/boardmarker.png), auto', 'url(./plugins/reveal.js-plugins/chalkboard/img/chalk.png), auto' ],
         },
         coursemod: {
             enabled: true,
@@ -127,45 +122,48 @@
             delimiter: ",",
             precision: 4 // the maximum number of digits after the comma
         },
+        spotlight: {
 
+            // size of the spotlight
+            size: 60,
+
+            // toggle spotlight by holding down the mouse key
+            toggleSpotlightOnMouseDown: true,
+
+            // choose the cursor when spotlight is on. Maybe "crosshair"?
+            presentingCursor: "none",
+
+            // true: cursor is always "none" except when spotlight is on.
+            presentingCursorOnlyVisibleWhenSpotlightVisible: false
+        },
 
         // More info https://github.com/hakimel/reveal.js#dependencies
         dependencies: [
-            {
-                src: './revealjs/lib/js/classList.js', condition: function () {
-                    return !document.body.classList;
-                }
-            },
-            {
-                src: './revealjs/plugin/markdown/marked.js', condition: function () {
-                    return !!document.querySelector('[data-markdown]');
-                }
-            },
-            {
-                src: './revealjs/plugin/markdown/markdown.js', condition: function () {
-                    return !!document.querySelector('[data-markdown]');
-                }
-            },
-            {
-                src: './revealjs/plugin/highlight/highlight.js', async: true, callback: function () {
-                    hljs.initHighlightingOnLoad();
-                }
-            },
+            { src: './plugins/reveal.js-plugin-spotlight/spotlight.js' },
+            {src: './plugins/reveal.js-plugins/spreadsheet/spreadsheet.js'},
+            {src: './plugins/reveal.js-plugins/chart/Chart.min.js'},
+            {src: './plugins/reveal.js-plugins/chart/csv2chart.js'},
+            { src: './plugins/reveal.js-plugins/chalkboard/chalkboard.js' },
+            { src: './plugins/reveal-pdfexport/pdfexport.js', async: true },
+            {src: './revealjs/plugin/print-pdf/print-pdf.js', async: true},
             {src: './revealjs/plugin/search/search.js', async: true},
             {src: './revealjs/plugin/zoom-js/zoom.js', async: true},
-            {src: './revealjs/plugin/notes/notes.js', async: true},
             {src: './revealjs/plugin/math/math.js', async: true},
-            {src: './plugins/reveal.js-coursemod/coursemod/coursemod.js', async: true},
-            {src: './plugins/reveal-pdfexport/pdfexport.js', async: true},
-            {src: './plugins/reveal.js-plugins/chalkboard/chalkboard.js'},
-            {src: './plugins/reveal.js-menu/menu.js'},
-            {src: './plugins/reveal.js-toolbar/toolbar.js'},
-            {src: './plugins/reveal.js-plugins/spreadsheet/spreadsheet.js'},
-            {src: './plugins//reveal.js-plugins/chart/Chart.min.js'},
-            {src: './plugins/reveal.js-plugins/chart/csv2chart.js'},
+            { src: './plugins/reveal.js-toolbar/toolbar.js' },
+            { src: './plugins/reveal.js-menu/menu.js' },
+            { src: './revealjs/plugin/markdown/marked.js' },
+            { src: './revealjs/plugin/markdown/markdown.js' },
+            { src: './revealjs/plugin/notes/notes.js', async: true },
+            { src: './revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
         ],
 
         keyboard: {
+            65: function() { RevealSpotlight.toggleSpotlight() },
+
+            // enter/leave presentation mode by pressing key 'Windows Menu/Right'
+            70: function() {
+                RevealSpotlight.togglePresentationMode();
+            },
             67: function () {
                 RevealChalkboard.toggleNotesCanvas()
             },	// toggle chalkboard when 'c' is pressed
